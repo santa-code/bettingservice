@@ -1,0 +1,41 @@
+server:
+  port: 8989
+
+variables:
+  kafka-topics:
+    event-outcomes-topic: event-outcomes
+  rocketmq-topics:
+    bet-settlements-topic: bet-settlements
+
+rocketmq:
+  consumer:
+    group: betting-consumer-group
+  producer:
+    group: betting-producer-group
+    send-message-timeout: 30000
+  name-server: localhost:9876
+
+spring:
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: betting-service-group
+      value-deserializer: com.sporty.bettingservice.config.KafkaMessageDeserializer
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: com.sporty.bettingservice.config.KafkaMessageSerializer
+  datasource:
+    url: jdbc:h2:mem:betdb;
+    driverClassName: org.h2.Driver
+    username: sa
+    password:
+  jpa:
+    hibernate:
+      #only for the interview purpose,schema creation and schema update should be managed
+      #by migration tool such as Flyway or DB administrator.
+      ddl-auto: update
+
+  h2:
+    console:
+      enabled: true
+
