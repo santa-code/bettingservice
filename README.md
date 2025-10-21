@@ -58,7 +58,7 @@ This is a simple backend service that simulates sports betting event outcome han
 ## Running the Service
 
 ## Build and run the service (using Maven):
- `./mvnw spring-boot:run`
+ `mvn spring-boot:run`
 
 ## Testing the API
 To publish a sports event outcome:
